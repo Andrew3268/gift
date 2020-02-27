@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<div class="active_image">
+  <%= image_tag(@post.image) if @post.image.attached? %>
+</div>
+
 <p>
   <strong>Title:</strong>
   <%= @post.title %>
