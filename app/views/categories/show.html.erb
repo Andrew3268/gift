@@ -1,19 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div class="layout">
+  <div class="wrap">
+    <div class="top_wrapper">
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @category.description %>
-</p>
+      <p>
+        <strong>Name:</strong>
+        <%= @category.name %>
+      </p>
 
-<p>
-  <strong>Display in navbar:</strong>
-  <%= @category.display_in_navbar %>
-</p>
+      <p>
+        <strong>Link:</strong>
+        <%= @category.cat_link %>
+      </p>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+      <p>
+        <strong>Description:</strong>
+        <%= @category.cat_description %>
+      </p>
+
+      <p>
+        <strong>Display in navbar:</strong>
+        <%= @category.display_in_navbar %>
+      </p>
+
+      <%= link_to 'Edit', edit_category_path(@category) %> |
+      <%= link_to 'Back', categories_path %>
+
+    </div>
+  </div>
+</div>

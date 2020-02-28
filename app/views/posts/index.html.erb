@@ -1,47 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="layout">
+  <div class="wrap">
+    <div class="top_wrapper clearfix"><%= render 'shared/second_menu' %></div>
+    <div class="mid_wrapper">
+      <!-- <p id="notice"><%= notice %></p> -->
 
-<h1>Posts | <%= link_to "New Category", new_category_path %></h1>
-<br/><br/><br/>
-All Categories<br/>
-<a href="/">Everything</a>
-<% Category.all.each do |cat| %>
-  <%= link_to cat.name, posts_path(category: cat.name) %>
-<% end %>
-<br/><br/><br/>
-Only in navbar<br/>
-<% Category.where(display_in_navbar: true).each do |cat| %>
-  <%= link_to cat.name, posts_path(category: cat.name) %>
-<% end %>
-<br/><br/><br/>
 
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Category</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
+      <div class="sd_category">
+        <% if params[:category].present? %>
+          <div><p><a href="/categories">Categories</a> > <span><%= params[:category] %></span></p></div>
+        <% else %>
+          <!-- <div class="dealpage_title sd_com"><p>Sales & Promotions</p></div>     -->
+        <% end %>
+      </div>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><div class="active_image"><%= link_to (image_tag post.image, alt: "haha"), post if post.image.attached? %></div></td>
+    
+      <div class="index_box clearfix">
+        <% @posts.each do |post| %>
+          <div class="index_card">
+            <div class="index_image">
+              <%= link_to (image_tag post.image, alt: "haha"), post if post.image.attached? %>
+            </div>
+            <div class="index_inner">
+              <p><%= post.title %></p>
+              <!-- <%= post.body %> -->
+              <!-- <%= post.category.name %> -->
+              <div class="admin">
+                <%= link_to 'Edit', edit_post_path(post) %> |
+                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </div>
 
-        
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
-        <td><%= post.category.name %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          </div>
+        <% end %>
+      </div>
 
-<br>
 
-<%= link_to 'New Post', new_post_path %>
+    </div>
+  </div>
+</div>

@@ -35,8 +35,14 @@ ActiveRecord::Schema.define(version: 2020_02_27_101503) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.text "description"
+    t.string "cat_link"
+    t.text "cat_description"
     t.boolean "display_in_navbar", default: true
+    t.string "cat_spare_01"
+    t.string "cat_spare_02"
+    t.string "cat_spare_03"
+    t.string "cat_spare_04"
+    t.string "cat_spare_05"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
