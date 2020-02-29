@@ -6,12 +6,9 @@
 
 
       <div class="sd_category">
-        <% if params[:category].present? %>
-          <div><p><a href="/categories">Categories</a> > <span><%= params[:category] %></span></p></div>
+        <% if params[:guide].present? %>
+          <div><p><a href="/guides">Gift Guide</a> > <span><%= params[:guide] %></span></p></div>
         <% else %>
-          <% if params[:guide].present? %>
-            <div><p><a href="/guides">Gift Guide</a> > <span><%= params[:guide] %></span></p></div>
-          <% end %> 
           <!-- <div class="dealpage_title sd_com"><p>Sales & Promotions</p></div>     -->
         <% end %>
       </div>
@@ -26,7 +23,7 @@
             <div class="index_inner">
               <p><%= post.title %></p>
               <!-- <%= post.body %> -->
-              <%= post.category.name %>
+              <%= post.guide.name %>
               <div class="admin">
                 <%= link_to 'Edit', edit_post_path(post) %> |
                 <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>

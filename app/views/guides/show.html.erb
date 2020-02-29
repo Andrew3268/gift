@@ -1,0 +1,28 @@
+<!-- <p id="notice"><%= notice %></p> -->
+<div class="layout">
+  <div class="wrap">
+    <div class="top_wrapper">
+
+        <p>
+          <strong>Gname:</strong>
+          <%= @guide.name %>
+        </p>
+
+        <p>
+          <strong>G description:</strong>
+          <%= @guide.g_description %>
+        </p>
+
+        <p>
+          <strong>Display in navbar:</strong>
+          <%= @guide.display_in_navbar %>
+        </p>
+
+        <p>Category: <%= @guide.name %></p>
+
+        <%= link_to 'Edit', edit_guide_path(@guide) %> |
+        <%= link_to 'Back', guides_path %>
+
+    </div>
+  </div>
+</div>

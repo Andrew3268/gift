@@ -10,6 +10,22 @@ class PostsController < ApplicationController
     else
       @posts = Post.all
     end
+
+    # if params.has_key?(:guide)
+    #   @guide = Guide.find_by_name(params[:guide])
+    #   @posts = Post.where(guide: @guide)
+    # else
+    #   @posts = Post.all
+    # end
+  end
+
+  def index_guide
+    if params.has_key?(:guide)
+      @guide = Guide.find_by_name(params[:guide])
+      @posts = Post.where(guide: @guide)
+    else
+      @posts = Post.all
+    end
   end
 
   # GET /posts/1
@@ -74,6 +90,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :category_id, :image)
+      params.require(:post).permit(:title, :body, :category_id, :guide_id, :image)
     end
 end

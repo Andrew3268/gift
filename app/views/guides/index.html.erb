@@ -1,0 +1,31 @@
+<div class="layout">
+  <div class="wrap">
+    <div class="top_wrapper clearfix">
+
+      <br/>
+      <p>All Gift Guide</p>      
+      <div class="clearfix">
+        <% Guide.all.each do |gui| %>
+          <div class="category_card">
+            <a href="#n"><%= image_tag(gui.guide_image) if gui.guide_image.attached? %></a>
+            <p><%= link_to gui.name, posts_index_guide_path(guide: gui.name) %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <br/><br/><br/>
+      Only in navbar<br/>
+      <% Guide.where(display_in_navbar: true).each do |gui| %>
+        <%= link_to gui.name, posts_index_guide_path(guide: gui.name) %>
+      <% end %>
+
+      <br/>
+   
+    </div>
+
+  
+    <%= render 'guides/added_gui' %>
+
+        
+  </div>
+</div>

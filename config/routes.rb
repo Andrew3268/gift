@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :guides
+  get '/posts/index_guide', to:'posts#index_guide'
   root 'posts#index'
   resources :categories
   resources :posts
