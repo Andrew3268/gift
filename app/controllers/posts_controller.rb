@@ -8,7 +8,7 @@ class PostsController < ApplicationController
       @category = Category.find_by_name(params[:category])
       @posts = Post.where(category: @category)
     else
-      @posts = Post.all
+      @posts = Post.all.order("created_at DESC")
     end
 
     # if params.has_key?(:guide)
@@ -90,6 +90,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :category_id, :guide_id, :image)
+      params.require(:post).permit(:title, :description, :category_id, :guide_id, :image, :link, :is_price, :was_price, :pct,
+                                   :image_toggle, :video, :source)
     end
 end

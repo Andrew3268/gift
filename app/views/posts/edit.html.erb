@@ -6,15 +6,21 @@
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-        <%= f.select :body, ([["Image", ""], "Contain"])%>
+        <%= f.select :image_toggle, ([["Cover", ""], "Contain"])%>
 
         <div class="form-inputs">
-          <%= f.input :title %>
-          <!-- <%= f.input :body %> -->
-          <%= f.file_field :image %>
-
           <%= f.association :category %>
           <%= f.association :guide %>
+          <%= f.file_field :image %>
+          <%= f.input :title %>
+          <%= f.input :description %>
+          <%= f.input :link %>
+          <%= f.input :is_price %>
+          <%= f.input :was_price %>
+          <%= f.input :pct %>
+          <%= f.input :source %>
+          <%= f.input :video %>
+          <%= f.input :image_toggle %>
         </div>
 
         <div class="form-actions">

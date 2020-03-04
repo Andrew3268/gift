@@ -4,10 +4,10 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <%= f.file_field :category_image %>
     <%= f.input :name %>
     <%= f.input :cat_link %>
     <%= f.input :cat_description %>
-    <%= f.file_field :category_image %>
     <%= f.input :display_in_navbar %>
   </div>
 
