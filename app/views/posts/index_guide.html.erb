@@ -6,24 +6,46 @@
 
 
       <div class="sd_category">
-        <% if params[:guide].present? %>
-          <div><p><a href="/guides">Gift Guide</a> > <span><%= params[:guide] %></span></p></div>
+        <% if params[:category].present? %>
+          <div><p><a href="/categories">Categories</a> > <span><%= params[:category] %></span></p></div>
         <% else %>
+          <% if params[:guide].present? %>
+            <div><p><a href="/guides">Gift Guide</a> > <span><%= params[:guide] %></span></p></div>
+          <% end %> 
           <!-- <div class="dealpage_title sd_com"><p>Sales & Promotions</p></div>     -->
         <% end %>
       </div>
 
     
-      <div class="index_box clearfix">
+      <div class="index_box clearfix index_comm">
         <% @posts.each do |post| %>
           <div class="index_card">
-            <div class="index_image">
-              <%= link_to (image_tag post.image, alt: "haha"), post if post.image.attached? %>
+            <div class="index_image_box clearfix">
+              <% if post.image_toggle.present? %>
+                <% post.image_toggle %>
+                <div class="index_image contain">
+                  <%= link_to (image_tag post.image, alt: "haha"), post if post.image.attached? %>
+                </div>
+              <% else %>
+                <div class="index_image">
+                  <%= link_to (image_tag post.image, alt: "haha"), post if post.image.attached? %>
+                </div>
+              <% end %>
             </div>
-            <div class="index_inner">
+
+            <div class="inner">
               <p><%= post.title %></p>
-              <!-- <%= post.body %> -->
-              <%= post.guide.name %>
+              <div class="pricing">
+                <span class="is"><%= number_to_currency(post.is_price) %></span>
+                <% if post.was_price.present? %>
+                  <span class="was"><%= number_to_currency(post.was_price) %></span>
+                  <% final_pct = 0 %>
+                  <% final_pct =  (post.was_price - post.is_price) / post.was_price * 100 %>
+                  <span class="pct">( <%= number_to_percentage(final_pct, precision: 0) %> OFF )</span>
+                <% end %>
+              </div>
+              <!-- <%= post.description %> -->
+              <!-- <%= post.category.name %> -->
               <div class="admin">
                 <%= link_to 'Edit', edit_post_path(post) %> |
                 <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -1,0 +1,43 @@
+<div class="show_box index_comm mid_wrapper clearfix">
+
+      <div class="active_image">
+        <% if @post.image_toggle.present? %>
+          <% @post.image_toggle %>
+          <div class="active_image_box contain">
+            <%= image_tag(@post.image) if @post.image.attached? %>
+          </div>
+        <% else %>
+          <div class="active_image_box">
+            <%= image_tag(@post.image) if @post.image.attached? %>
+          </div>
+        <% end %>
+        
+      </div>
+
+      <div class="inner">
+        <span class="title"><%= @post.title %></span>
+        <span class="source">By <%= @post.source %></span>
+        <span class="description"><%= @post.description %></span>
+
+        <div class="show_pricing clearfix">
+          <span class="is"><%= number_to_currency(@post.is_price) %></span>
+          <% if @post.was_price.present? %>
+            <span class="was"><%= number_to_currency(@post.was_price) %></span>
+            <% final_pct = 0 %>
+            <% final_pct =  (@post.was_price - @post.is_price) / @post.was_price * 100 %>
+            <span class="pct">( <%= number_to_percentage(final_pct, precision: 0) %> OFF )</span>
+          <% end %>
+        </div>
+        <!-- <p class="category"><%= @post.category.name %></p> -->
+
+        <div class="btn">
+          <a href="<%= @post.link %>">BUY NOW ON COUPANG</a>
+        </div>
+      </div>
+
+      <div class="admin">
+        <%= link_to 'Edit', edit_post_path(@post) %> |
+        <%= link_to 'Back', posts_path %>
+      </div>
+
+    </div><!-- show_box -->

@@ -1,0 +1,35 @@
+
+  <div class="blog-post">
+      <div class="blog-post-img">
+        <% if @post.image_toggle.present? %>
+          <% @post.image_toggle %>
+          <div class="active_image_box contain">
+            <%= image_tag(@post.image) if @post.image.attached? %>
+          </div>
+        <% else %>
+          <div class="active_image_box">
+            <%= image_tag(@post.image) if @post.image.attached? %>
+          </div>
+        <% end %>
+      </div>
+      <div class="blog-post-info">
+          <!-- <div class="blog-post-date">
+              <span>Thursday</span>
+              <span>Novber 5 2019</span>
+          </div> -->
+          <h1 class="blog-post-title"><%= @post.title %></h1>
+          By <%= @post.source %>
+
+          <div class="pricing clearfix">
+            <span class="is"><%= number_to_currency(@post.is_price) %></span>
+            <% if @post.was_price.present? %>
+              <span class="was"><%= number_to_currency(@post.was_price) %></span>
+              <% final_pct = 0 %>
+              <% final_pct =  (@post.was_price - @post.is_price) / @post.was_price * 100 %>
+              <span class="pct">( <%= number_to_percentage(final_pct, precision: 0) %> OFF )</span>
+            <% end %>
+          </div>
+          <p class="blog-post-text"><%= @post.description %></p>
+          <a href="#" class="blog-post-cta">Read More</a>
+      </div>
+  </div>
