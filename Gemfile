@@ -6,6 +6,7 @@ ruby '2.3.4'
 gem 'simple_form', '~> 5.0', '>= 5.0.2'
 gem 'execjs'
 gem 'therubyracer'
+gem 'devise', '~> 4.7', '>= 4.7.1'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

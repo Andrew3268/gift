@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :guides
   get '/posts/index_guide', to:'posts#index_guide'
   root 'posts#index'
