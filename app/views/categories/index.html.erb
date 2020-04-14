@@ -1,25 +1,22 @@
+<%= render 'shared/header' %>
 <div class="layout">
   <div class="wrap">
     <div class="top_margin clearfix">
 
       <br/>
       <p>All Categories</p>      
-      <div class="clearfix">
-        <% Category.all.each do |cat| %>
+      <div class="category_wrap clearfix"> 
+        <% Category.where(display_in_navbar: true).each do |cat| %>
           <div class="category_card">
-            <a href="<%= cat.cat_link %>"><%= image_tag(cat.category_image) if cat.category_image.attached? %></a>
-            <p><%= link_to cat.name, posts_path(category: cat.name) %></p>
+            <div class="box">
+              <div class="image">
+                <a href="<%= cat.cat_link %>"><%= image_tag(cat.category_image) if cat.category_image.attached? %></a>
+              </div>
+              <p><%= link_to cat.name, posts_path(category: cat.name) %></p>
+            </div>
           </div>
         <% end %>
       </div>
-
-      <br/><br/><br/>
-      Only in navbar<br/>
-      <% Category.where(display_in_navbar: true).each do |cat| %>
-        <%= link_to cat.name, posts_path(category: cat.name) %>
-      <% end %>
-
-      <br/>
    
     </div>
 

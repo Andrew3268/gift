@@ -12,6 +12,11 @@ class PostsController < ApplicationController
       @posts = Post.all.order("created_at DESC")
     end
 
+    if params[:search]
+      @search_term = params[:search]
+      @posts = @posts.search_by(@search_term)
+    end
+
     # if params.has_key?(:guide)
     #   @guide = Guide.find_by_name(params[:guide])
     #   @posts = Post.where(guide: @guide)

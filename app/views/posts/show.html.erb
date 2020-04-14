@@ -1,11 +1,16 @@
-<!-- <p id="notice"><%= notice %></p> -->
+<div class="header">
+  <%= render 'shared/header' %>
+</div>
 <div class="layout">
   <div class="wrap">
 
-    <div class="top_margin clearfix">
-      <%= render 'posts/show_page_ori' %>
+    <div class="show_wrap clearfix">
+      <%= render 'posts/show_body' %>
     </div>
 
     
   </div><!-- wrap -->
 </div><!-- layout -->
+<div class="footer_mobile">
+  <%= render "shared/footer_mobile" %>
+</div>
