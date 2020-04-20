@@ -1,0 +1,46 @@
+
+
+    <div class="index_main">
+      <div class="wrapper">
+        <aside class="side-content">
+          <h2 class="logo">
+            LIST/
+          </h2>
+          <!-- <i id="toggle-btn" class="fa fa-chevron-down fa-lg" aria-label="menu-button" role="button" onclick="toggleMenu()"></i> -->
+         <!--  <nav id="nav-menu-js" class="nav-menu">
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">News</a>
+            <a href="#" class="nav-link">Shop</a>
+            <a href="#" class="nav-link">Contact</a>
+          </nav>       
+          <nav id="mobile-menu-js" class="mobile-menu" style="display: none;">
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">News</a>
+            <a href="#" class="nav-link">Shop</a>
+            <a href="#" class="nav-link">Contact</a>
+          </nav> -->
+          <nav id="categories-js" class="categories">
+            <div class="category"><a href="/">All</a></div>
+            <% Category.where(display_in_navbar: true).each do |cat| %>
+              <div class="category"><%= link_to cat.name, posts_path(category: cat.name) %></div>
+            <% end %>
+          </nav>
+        </aside>
+
+        <main class="main-content">
+          <div class="column-one column">
+            <% @posts.each do |post| %>
+              <%= link_to image_tag(post.image, alt:"", title:""), post, :class => "image" %>
+            <% end %>
+            
+            <img src="http://res.cloudinary.com/dm7uillhl/image/upload/s--XQGQ4-3K--/q_jpegmini:1/v1527069130/pexels-photo-893896_q6vqn4_qv9ord.jpg" alt="A laptop, notepads, memo pad and cactus on a blue desk" class="image">
+            <img src="http://res.cloudinary.com/dm7uillhl/image/upload/s--XQGQ4-3K--/q_jpegmini:1/v1527069130/pexels-photo-893896_q6vqn4_qv9ord.jpg" alt="A laptop, notepads, memo pad and cactus on a blue desk" class="image">
+          </div>
+          
+        </main>
+
+      </div>
+    </div>
+
+
+

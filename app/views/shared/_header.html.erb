@@ -6,14 +6,11 @@
     <div class="container">
       <nav class="site-navbar">
         <div class="box-left">
-          <a href="/" class="site-logo navbar-item nav_logo">Where To Get It</a>
+          <a href="/" class="site-logo navbar-item nav_logo">Alcapa</a>
         </div>
         <div class="box-right">
           <ul id="primary-menu" class="main-menu navbar-nav">
-            <li id="menu-item-1811" class="menu-item current-menu-item"><a href="/">Home</a></li>
-            <li id="menu-item-1777" class="menu-item"><a href="/categories">Categories</a></li>
-            <li id="menu-item-1805" class="menu-item"><a href="/guides">Gift Guide</a></li>
-            <li id="menu-item-1806" class="menu-item"><a href="#">Editor's Pick</a></li>
+            
             <!-- <li id="menu-item-1770" class="menu-item menu-item-has-children">
               <a href="#" aria-haspopup="true" aria-expanded="false">About Us</a>
               <ul class="sub-menu">
@@ -22,8 +19,25 @@
                 <li id="menu-item-1771" class="menu-item"><a href="#">Services</a></li>
               </ul>
             </li> -->
+            <!-- <li class="search"><%= form_for "",url: posts_path, role: "search", method: :get do %><%= text_field_tag :search, @search_term, placeholder: "Search here..." %><% end %></li> -->
 
-            <!-- <li id="menu-item-1774" class="menu-item menu-item-has-children">
+            <!-- <li id="menu-item-1811" class="menu-item current-menu-item"><a href="/">Home</a></li> -->
+            <!-- <li id="menu-item-1777" class="menu-item"><a href="/categories">Categories</a></li>
+            <li id="menu-item-1805" class="menu-item"><a href="/guides">Gift Guide</a></li>
+            <li id="menu-item-1806" class="menu-item"><a href="#">Editor's Pick</a></li> -->
+            
+            <li id="menu-item-1774" class="menu-item menu-item-has-children mobile-only">
+              <a href="#" aria-haspopup="true" aria-expanded="false">Cetegories</a>
+              <ul class="sub-menu">
+               <li><a href="/">All</a></li>
+               <% Category.where(display_in_navbar: true).each do |cat| %>
+                <li id="menu-item-1801" class="menu-item"><%= link_to cat.name, posts_path(category: cat.name) %></li>
+               <% end %>
+              </ul>
+            </li>
+            
+
+           <!--  <li id="menu-item-1774" class="menu-item menu-item-has-children">
               <a href="#" aria-haspopup="true" aria-expanded="false">Level 1</a>
               <ul class="sub-menu">
                 <li id="menu-item-1775" class="menu-item menu-item-has-children">
@@ -47,9 +61,7 @@
                 <li id="menu-item-1804" class="menu-item"><a href="#">Level 2b</a></li>
               </ul>
             </li> -->
-            <!-- <li id="menu-item-1777" class="menu-item"><a href="#">Our Work</a></li>
-            <li id="menu-item-1805" class="menu-item"><a href="#">The News</a></li>
-            <li id="menu-item-1806" class="menu-item"><a href="#">Contact Us</a></li> -->
+
           </ul>
           <div class="navbar-item">
             <a class="responsive-nav">
