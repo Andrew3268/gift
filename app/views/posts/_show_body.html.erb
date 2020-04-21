@@ -6,6 +6,11 @@
       <%= link_to 'Back', posts_path %>
   </div>
 </div>
+
+<div class="back_pc">
+  <a href="/"><img class="go_back" src="<%=asset_path 'go_back.png' %>" alt="뒤로가기" /></a>
+</div>
+
 <div class="show_box index_comm mid_wrapper clearfix">
 
 
@@ -20,7 +25,6 @@
         <%= image_tag(@post.image) if @post.image.attached? %>
       </div>
     <% end %>
-    
   </div>
 
   <div class="inner">
@@ -45,6 +49,7 @@
     </div>
 
     <div class="sharing">
+      <em>좋은건 함께 나눠요 :)</em>
       <!-- Go to www.addthis.com/dashboard to customize your tools -->
       <div class="addthis_inline_share_toolbox"></div>
     </div>
