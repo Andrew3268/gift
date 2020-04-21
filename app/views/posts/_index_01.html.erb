@@ -1,33 +1,38 @@
-
-
-    <div class="index_main">
-      <div class="wrapper">
+<div class="index_main">
+     <div class="index_wrapper">
         <aside class="side-content">
           <h2 class="logo">
             LIST/
           </h2>
-          <!-- <i id="toggle-btn" class="fa fa-chevron-down fa-lg" aria-label="menu-button" role="button" onclick="toggleMenu()"></i> -->
-         <!--  <nav id="nav-menu-js" class="nav-menu">
-            <a href="#" class="nav-link">About</a>
-            <a href="#" class="nav-link">News</a>
-            <a href="#" class="nav-link">Shop</a>
-            <a href="#" class="nav-link">Contact</a>
-          </nav>       
+          
+          <% if current_user && current_user.admin %>
+            <nav id="nav-menu-js" class="nav-menu">
+              <%= link_to 'New Post', new_post_path %>
+              <%= link_to "New Category", new_category_path %>
+              <%= link_to "New Guide", new_guide_path %>
+              <% if current_user %>
+                <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+                <li><%= link_to 'Sign In', new_user_session_path %></li>
+              <% end %>
+            </nav>       
+          <% end %>
           <nav id="mobile-menu-js" class="mobile-menu" style="display: none;">
             <a href="#" class="nav-link">About</a>
             <a href="#" class="nav-link">News</a>
             <a href="#" class="nav-link">Shop</a>
             <a href="#" class="nav-link">Contact</a>
-          </nav> -->
+          </nav>
           <nav id="categories-js" class="categories">
-            <div class="category"><a href="/">All</a></div>
+            <div class="category"><a href="/">Everything</a></div>
             <% Category.where(display_in_navbar: true).each do |cat| %>
               <div class="category"><%= link_to cat.name, posts_path(category: cat.name) %></div>
             <% end %>
           </nav>
         </aside>
 
-        <main class="main-content">
+        <!-- <main class="main-content">
           <div class="column-one column">
             <% @posts.each do |post| %>
               <%= link_to image_tag(post.image, alt:"", title:""), post, :class => "image" %>
@@ -37,10 +42,66 @@
             <img src="http://res.cloudinary.com/dm7uillhl/image/upload/s--XQGQ4-3K--/q_jpegmini:1/v1527069130/pexels-photo-893896_q6vqn4_qv9ord.jpg" alt="A laptop, notepads, memo pad and cactus on a blue desk" class="image">
           </div>
           
+        </main> -->
+
+        <main class="main-ctn">
+          <% @posts.each do |post| %>
+            <div class="card">
+              <div class="image-card">
+               <div class="image-box"><%= link_to image_tag(post.image, alt:"", title:""), post %></div>
+              </div>
+              <div class="inner">
+                <h3><%= link_to post.title, post %></h3>
+                <p><%= number_to_currency(post.is_price, locale: :kr) %>원</p>
+              </div>
+            </div>
+          <% end %>
+
+          <div class="card">
+            <div class="image-card">
+             <div class="image-box"><img src="https://goo.gl/TALyhb" alt="" /></div>
+            </div>
+            <div class="inner">
+              <h3>이것은 테슷흐 입니다.</h3>
+              <p>3000원입니다.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="image-card">
+             <div class="image-box"><img src="https://goo.gl/bybkCD" alt="" /></div>
+            </div>
+            <div class="inner">
+              <h3>이것은 테슷흐 입니다.</h3>
+              <p>3000원입니다.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="image-card">
+             <div class="image-box"><img src="https://goo.gl/QO52Sd" alt="" /></div>
+            </div>
+            <div class="inner">
+              <h3>이것은 테슷흐 입니다.</h3>
+              <p>3000원입니다.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="image-card">
+             <div class="image-box"><img src="https://goo.gl/H9xGFt" alt="" /></div>
+            </div>
+            <div class="inner">
+              <h3>이것은 테슷흐 입니다.</h3>
+              <p>3000원입니다.</p>
+            </div>
+          </div>
+
         </main>
 
       </div>
     </div>
+
 
 
 

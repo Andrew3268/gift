@@ -2,6 +2,7 @@
   <a href="/"><img class="go_back" src="<%=asset_path 'go_back.png' %>" alt="뒤로가기" /></a>
   <div class="admin">
       <%= link_to 'Edit', edit_post_path(@post) %> |
+      <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %> | 
       <%= link_to 'Back', posts_path %>
   </div>
 </div>
@@ -42,10 +43,16 @@
     <div class="btn">
       <a href="<%= @post.link %>">BUY NOW ON COUPANG</a>
     </div>
+
+    <div class="sharing">
+      <!-- Go to www.addthis.com/dashboard to customize your tools -->
+      <div class="addthis_inline_share_toolbox"></div>
+    </div>
   </div>
 
   <div class="admin">
     <%= link_to 'Edit', edit_post_path(@post) %> |
+    <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %> | 
     <%= link_to 'Back', posts_path %>
   </div>
 
