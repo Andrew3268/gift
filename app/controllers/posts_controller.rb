@@ -17,12 +17,6 @@ class PostsController < ApplicationController
       @posts = @posts.search_by(@search_term)
     end
 
-    # if params.has_key?(:guide)
-    #   @guide = Guide.find_by_name(params[:guide])
-    #   @posts = Post.where(guide: @guide)
-    # else
-    #   @posts = Post.all
-    # end
   end
 
   def index_guide

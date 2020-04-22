@@ -1,64 +1,128 @@
 <div class="layout">
   <div class="wrap">
-    <div class="top_margin clearfix"><h2>I've done deploy!!:D</h2></div>
-    <!-- <div class="top_margin clearfix"><h2>쿠팡엔 이런것도 판다!!</h2></div> -->
-    <div class="middle_margin clearfix"><%= render 'shared/second_menu' %></div>
-    <div class="mid_wrapper">
-      <!-- <p id="notice"><%= notice %></p> -->
-
-
-      <div class="sd_category">
-        <% if params[:category].present? %>
-          <div><p><a href="/categories">Categories</a> > <span><%= params[:category] %></span></p></div>
-        <% else %>
-          <% if params[:guide].present? %>
-            <div><p><a href="/guides">Gift Guide</a> > <span><%= params[:guide] %></span></p></div>
-          <% end %> 
-          <!-- <div class="dealpage_title sd_com"><p>Sales & Promotions</p></div>     -->
-        <% end %>
-      </div>
-
-    
-      <div class="index_box clearfix index_comm">
-        <% @posts.each do |post| %>
-          <div class="index_card">
-            <div class="index_image_box clearfix">
-              <% if post.image_toggle.present? %>
-                <% post.image_toggle %>
-                <div class="index_image contain">
-                  <%= link_to (image_tag post.image, alt: "haha"), post if post.image.attached? %>
-                </div>
+    <div class="index_main">
+     <div class="index_wrapper">
+        <aside class="side-content">
+          <h2 class="logo">
+            LIST/
+          </h2>
+          
+          <% if current_user && current_user.admin %>
+            <nav id="nav-menu-js" class="nav-menu">
+              <%= link_to 'New Post', new_post_path %>
+              <%= link_to "New Category", new_category_path %>
+              <%= link_to "New Guide", new_guide_path %>
+              <% if current_user %>
+                <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
               <% else %>
-                <div class="index_image">
-                  <%= link_to (image_tag post.image, alt: "haha"), post if post.image.attached? %>
+                <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+                <li><%= link_to 'Sign In', new_user_session_path %></li>
+              <% end %>
+            </nav>       
+          <% end %>
+          <nav id="mobile-menu-js" class="mobile-menu" style="display: none;">
+            <a href="#" class="nav-link">About</a>
+            <a href="#" class="nav-link">News</a>
+            <a href="#" class="nav-link">Shop</a>
+            <a href="#" class="nav-link">Contact</a>
+          </nav>
+          <nav id="categories-js" class="categories">
+            <div class="category"><a href="/">Everything</a></div>
+            <% Category.where(display_in_navbar: true).each do |cat| %>
+              <div class="category"><%= link_to cat.name, posts_path(category: cat.name) %></div>
+            <% end %>
+          </nav>
+        </aside>
+
+        <div class="mcb">
+          <main class="main-ctn clearfix">
+            <div class="visual_pc">
+              <div class="visual_wrap ">
+                <div class="visual clearfix">
+                  <h2>쿠팡엔 이런것도 있다!! 몰랏지?</h2>
+                  <!-- <p>Curated by thinking defferently.</p> -->
+                  <p>갠찮아 이제부터 슬슬 알아가면되 :D</p>
+                  <div class="search_pc">
+                    <%= form_for "",url: posts_path, role: "search", method: :get do %><%= text_field_tag :search, @search_term, placeholder: "Search here..." %><% end %>          
+                    <ul class="sub_menu">
+                      <li><a href="#n">Latest</a></li>
+                      <li><a href="#n">Trending</a></li>
+                      <li><a href="#n">Spare</a></li>
+                    </ul>
+                  </div>
                 </div>
+              </div>
+            </div>
+
+            <div class="sd_category">
+              <% if params[:category].present? %>
+                <div><p><a href="/categories">Categories</a> > <span><%= params[:category] %></span></p></div>
+              <% else %>
+                <% if params[:guide].present? %>
+                  <div><p><a href="/guides">Gift Guide</a> > <span><%= params[:guide] %></span></p></div>
+                <% end %> 
+                <!-- <div class="dealpage_title sd_com"><p>Sales & Promotions</p></div>     -->
               <% end %>
             </div>
 
-            <div class="inner">
-              <p><%= post.title %></p>
-              <div class="pricing">
-                <span class="is"><%= number_to_currency(post.is_price) %></span>
-                <% if post.was_price.present? %>
-                  <span class="was"><%= number_to_currency(post.was_price) %></span>
-                  <% final_pct = 0 %>
-                  <% final_pct =  (post.was_price - post.is_price) / post.was_price * 100 %>
-                  <span class="pct">( <%= number_to_percentage(final_pct, precision: 0) %> OFF )</span>
-                <% end %>
+            <% @posts.each do |post| %>
+              <div class="card">
+                <div class="image-card">
+                 <div class="image-box"><%= link_to image_tag(post.image, alt:"", title:""), post %></div>
+                </div>
+                <div class="inner">
+                  <h3><%= link_to post.title, post %></h3>
+                  <p><%= number_to_currency(post.is_price, locale: :kr) %>원</p>
+                </div>
               </div>
-              <!-- <%= post.description %> -->
-              <!-- <%= post.category.name %> -->
-              <div class="admin">
-                <%= link_to 'Edit', edit_post_path(post) %> |
-                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+
+            <!-- <div class="card">
+              <div class="image-card">
+               <div class="image-box"><img src="https://goo.gl/TALyhb" alt="" /></div>
+              </div>
+              <div class="inner">
+                <h3>이것은 테슷흐 입니다.</h3>
+                <p>3000원입니다.</p>
               </div>
             </div>
 
-          </div>
-        <% end %>
+            <div class="card">
+              <div class="image-card">
+               <div class="image-box"><img src="https://goo.gl/bybkCD" alt="" /></div>
+              </div>
+              <div class="inner">
+                <h3>이것은 테슷흐 입니다.</h3>
+                <p>3000원입니다.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="image-card">
+               <div class="image-box"><img src="https://goo.gl/QO52Sd" alt="" /></div>
+              </div>
+              <div class="inner">
+                <h3>이것은 테슷흐 입니다.</h3>
+                <p>3000원입니다.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="image-card">
+               <div class="image-box"><img src="https://goo.gl/H9xGFt" alt="" /></div>
+              </div>
+              <div class="inner">
+                <h3>이것은 테슷흐 입니다.</h3>
+                <p>3000원입니다.</p>
+              </div>
+            </div> -->
+          </main>
+          
+        </div>
+
       </div>
-
-
     </div>
+    
   </div>
 </div>
+
