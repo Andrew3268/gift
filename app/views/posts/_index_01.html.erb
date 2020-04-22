@@ -5,7 +5,7 @@
         LIST/
       </h2>
       
-      <% if current_user && current_user.admin %>
+      
         <nav id="nav-menu-js" class="nav-menu">
           <%= link_to 'New Post', new_post_path %>
           <%= link_to "New Category", new_category_path %>
@@ -17,7 +17,8 @@
             <li><%= link_to 'Sign In', new_user_session_path %></li>
           <% end %>
         </nav>       
-      <% end %>
+        <!-- <% if current_user && current_user.admin %> -->
+      <!-- <% end %> -->
       <nav id="mobile-menu-js" class="mobile-menu" style="display: none;">
         <a href="#" class="nav-link">About</a>
         <a href="#" class="nav-link">News</a>

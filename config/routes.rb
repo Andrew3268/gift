@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  resources :shops
   devise_for :users
   resources :guides
   get '/posts/index_guide', to:'posts#index_guide'
+  get '/posts/shop', to:'posts#shop'
   root 'posts#index'
   resources :categories
   resources :posts

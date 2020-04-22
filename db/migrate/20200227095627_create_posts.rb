@@ -14,6 +14,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
 
       t.references :category, foreign_key: true
       t.references :guide, foreign_key: true
+      t.references :shop, foreign_key: true
 
       t.string :p_spare_01
       t.string :p_spare_02

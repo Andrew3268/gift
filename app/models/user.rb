@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :posts
   has_many :categories
   has_many :guides
+  has_many :shops
 end

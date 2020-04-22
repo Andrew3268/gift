@@ -1,0 +1,20 @@
+<br><br><br><br>
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @shop.name %>
+</p>
+
+<p>
+  <strong>S description:</strong>
+  <%= @shop.s_description %>
+</p>
+
+<p>
+  <strong>Display in navbar:</strong>
+  <%= @shop.display_in_navbar %>
+</p>
+
+<%= link_to 'Edit', edit_shop_path(@shop) %> |
+<%= link_to 'Back', shops_path %>

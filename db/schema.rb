@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_17_133318) do
+ActiveRecord::Schema.define(version: 2020_04_22_225141) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_03_17_133318) do
     t.float "pct"
     t.integer "category_id"
     t.integer "guide_id"
+    t.integer "shop_id"
     t.string "p_spare_01"
     t.string "p_spare_02"
     t.string "p_spare_03"
@@ -155,6 +156,16 @@ ActiveRecord::Schema.define(version: 2020_03_17_133318) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["guide_id"], name: "index_posts_on_guide_id"
+    t.index ["shop_id"], name: "index_posts_on_shop_id"
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.text "s_description"
+    t.boolean "display_in_navbar", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

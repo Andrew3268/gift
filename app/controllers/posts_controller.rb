@@ -28,6 +28,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def shop
+    if params.has_key?(:shop)
+      @shop = Shop.find_by_name(params[:shop])
+      @posts = Post.where(shop: @shop)
+    else
+      @posts = Post.all
+    end
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -90,7 +99,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :description, :category_id, :guide_id, :image, :link, :is_price, :was_price, :pct,
+      params.require(:post).permit(:title, :description, :category_id, :guide_id, :shop_id, :image, :link, :is_price, :was_price, :pct,
                                    :image_toggle, :video, :source)
     end
 end
