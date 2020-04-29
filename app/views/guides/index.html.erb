@@ -1,0 +1,27 @@
+<div class="layout">
+  <div class="wrap">
+    
+    <div class="top_margin clearfix">
+
+      <br/>
+      <p>All Gift Guide</p>      
+      <div class="clearfix">
+        <% Guide.where(display_in_navbar: true).each do |gui| %>
+          <div class="guide_card">
+            <div class="image_card">
+              <div class="image"><a href="#n"><%= image_tag(gui.guide_image) if gui.guide_image.attached? %></a></div>
+            </div>
+            <div class="inner">
+              <p><%= link_to gui.name, posts_guide_path(guide: gui.name) %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <% if current_user && current_user.admin %>
+      <%= render 'guides/admin' %>
+    <% end %>
+        
+  </div>
+</div>

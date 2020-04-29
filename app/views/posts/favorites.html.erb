@@ -1,0 +1,59 @@
+<div class="visual_mobile">
+  <div class="visual_wrap ">
+    <div class="favorite_visual clearfix">
+      <p><%= current_user.name %>'s Wish List</p>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="wrap">
+    <div class="top_margin favorite_top clearfix">
+      <div class="index_main">
+        <div class="index_wrapper">
+           <%= render 'posts/aside' %>
+
+            <div class="mcb">
+              <main class="main-ctn clearfix">
+
+                <div class="visual_pc">
+                  <div class="visual_wrap ">
+                    <div class="favorite_visual clearfix">
+                      <p><%= current_user.name %>'s Wish List</p>
+                    </div>
+                  </div>
+                </div>
+
+                <% current_user.favorites.each do |favorite| %>
+                  <div class="card">
+                    <div class="image-card">
+                     <div class="image-box"><%= link_to image_tag(favorite.post.image, alt:"", title:""), favorite.post %></div>
+                    </div>
+                    <div class="inner">
+                      <h3><%= link_to favorite.post.title, favorite.post %></h3>
+                      <div class="in-ctn">
+                        <p><%= number_to_currency(favorite.post.is_price, locale: :kr) %>원</p>
+                      </div>
+                      <div class="likes">
+                        <ul>
+                          <li><img class="like-button" src="<%=asset_path 'likes.png' %>"></li>
+                          <li class="likes-count"><%= favorite.post.get_upvotes.size %></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </main>
+            </div><!--.mcb-->
+
+        </div>  
+      </div>     
+    </div>
+  </div>
+</div>
+
+
+<!-- <p>Your Favorite Posts</p>
+< current_user.favorites.each do |favorite| >
+  [<favorite.created_at.strftime("%I:%M %p") >]You Favorited this post: < link_to favorite.post.title, favorite.post >
+< end > -->

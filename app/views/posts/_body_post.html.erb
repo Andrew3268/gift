@@ -1,0 +1,34 @@
+<div class="sd_category">
+  <% if params[:category].present? %>
+    <div><p><a href="/categories">Categories</a> > <span><%= params[:category] %></span></p></div>
+  <% else %>
+    <% if params[:guide].present? %>
+      <div><p><a href="/guides">Gift Guide</a> > <span><%= params[:guide] %></span></p></div>
+    <% else %> 
+      <% if params[:shop].present? %>
+        <div><p><a href="/shops">Shop</a> > <span><%= params[:shop] %></span></p></div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+            
+<% @posts.each do |post| %>
+  <div class="card">
+    <div class="image-card">
+     <div class="image-box"><%= link_to image_tag(post.image, alt:"", title:""), post %></div>
+    </div>
+    <div class="inner">
+      <h3><%= link_to post.title, post %></h3>
+      <div class="in-ctn">
+        <p><%= number_to_currency(post.is_price, locale: :kr) %>원</p>
+      </div>
+      <div class="likes">
+        <ul>
+          <li><img class="like-button" src="<%=asset_path 'likes.png' %>"></li>
+          <li class="likes-count"><%= post.get_upvotes.size %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>
+      

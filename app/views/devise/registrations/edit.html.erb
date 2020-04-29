@@ -1,0 +1,68 @@
+<div class="layout">
+  <div class="wrap">
+    <div class="top_margin clearfix">
+        
+       <div class="form-modal">  
+         <div class="form-toggle">
+            <button id="login-toggle" onclick="toggleLogin()">Edit</button>
+         </div>
+          
+          <div id="login-form">
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <%= f.error_notification %>
+              <div class="login_input">    
+                <%= f.input :name, required: true, autofocus: true %>
+                <%= f.input :email, required: true %>
+                <%= f.input :password, autocomplete: "off", hint: t(".leave_blank_if_you_don_t_want_to_change_it"), required: false %>
+                <%= f.input :password_confirmation, required: false %>
+                <%= f.input :current_password, hint: t(".we_need_your_current_password_to_confirm_your_changes"), required: true %>
+              </div>
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <p><%= t(".currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %></p>
+              <% end %>
+              <%= f.button :submit, t(".update"), class: "btn login" %>
+            <% end %>
+
+            <div class="out">
+              <p><%= t(".cancel_my_account") %></p>
+              <p><%= t(".unhappy") %> <%= link_to t(".cancel_my_account"), registration_path(resource_name), data: { confirm: t(".are_you_sure") }, method: :delete %></p>
+              <p><%= link_to t("devise.shared.links.back"), :back %></p>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- <h2><%= t(".title", resource: resource_name.to_s.humanize) %></h2>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, required: true, autofocus: true %>
+    <%= f.input :email, required: true %>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p><%= t(".currently_waiting_confirmation_for_email", email: resource.unconfirmed_email) %></p>
+    <% end %>
+
+    <%= f.input :password, autocomplete: "off", hint: t(".leave_blank_if_you_don_t_want_to_change_it"), required: false %>
+    <%= f.input :password_confirmation, required: false %>
+    <%= f.input :current_password, hint: t(".we_need_your_current_password_to_confirm_your_changes"), required: true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, t(".update") %>
+  </div>
+<% end %>
+
+<h3><%= t(".cancel_my_account") %></h3>
+
+<p><%= t(".unhappy") %> <%= link_to t(".cancel_my_account"), registration_path(resource_name), data: { confirm: t(".are_you_sure") }, method: :delete %></p>
+
+<%= link_to t("devise.shared.links.back"), :back %> -->
+
+
+

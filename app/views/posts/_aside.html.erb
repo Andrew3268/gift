@@ -1,0 +1,47 @@
+<aside class="side-content">
+  
+    <% if current_user %>
+      <h2 class="logo">HELLO/</h2>
+      <div class="user_box">
+        <p><%= current_user.name %></p>
+        <p><%= link_to '설정', edit_user_registration_path %> | <%= link_to '로그아웃', destroy_user_session_path, method: :delete %></p>
+        <p><a href="/posts/favorites">★ 나의 위시리스트</a></p>
+      </div>
+    <% else %>
+      <h2 class="logo">HELLO/</h2>
+      <div class="user_box">
+        <%= link_to '로그인 | ', new_user_session_path %>
+        <%= link_to '회원가입', new_user_registration_path %>
+      </div>
+    <% end %>
+  
+    <nav id="nav-menu-js" class="nav-menu">
+      <% if current_user && current_user.admin %>
+        <%= link_to 'New Post', new_post_path %>
+        <%= link_to "New Category", new_category_path %>
+        <%= link_to "New Guide", new_guide_path %>
+        <%= link_to "New Shop", new_shop_path %>
+        <%= link_to "Admin Center", rails_admin_path %>
+      <% end %>
+     <!--  <% if current_user %>
+        <p>Hello, <%= current_user.name %></p>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Sign Up', new_user_registration_path %>
+        <%= link_to 'Sign In', new_user_session_path %>
+      <% end %> -->
+    </nav>       
+    
+  <!-- <nav id="mobile-menu-js" class="mobile-menu" style="display: none;">
+    <a href="#" class="nav-link">About</a>
+    <a href="#" class="nav-link">News</a>
+    <a href="#" class="nav-link">Shop</a>
+    <a href="#" class="nav-link">Contact</a>
+  </nav> -->
+  <nav id="categories-js" class="categories">
+    <div class="category"><a href="/">Everything</a></div>
+    <% Category.where(display_in_navbar: true).each do |cat| %>
+      <div class="category"><%= link_to cat.name, posts_path(category: cat.name) %></div>
+    <% end %>
+  </nav>
+</aside>

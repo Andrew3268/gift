@@ -1,0 +1,100 @@
+<div class="mobile">
+  <a href="/"><img class="go_back" src="<%=asset_path 'go_back.png' %>" alt="뒤로가기" /></a>
+  <div class="admin">
+      <%= link_to 'Edit', edit_post_path(@post) %> |
+      <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+      <%= link_to 'Back', posts_path %>
+  </div>
+</div>
+
+<div class="back_pc">
+  <a href="/"><img class="go_back" src="<%=asset_path 'go_back.png' %>" alt="뒤로가기" /></a>
+</div>
+
+<div class="show_box index_comm mid_wrapper clearfix">
+
+
+  <div class="show_image">
+    <div class="active_image">
+      <% if @post.image_toggle.present? %>
+        <% @post.image_toggle %>
+        <div class="active_image_box contain">
+          <%= image_tag(@post.image) if @post.image.attached? %>
+        </div>
+      <% else %>
+        <div class="active_image_box">
+          <%= image_tag(@post.image) if @post.image.attached? %>
+        </div>
+      <% end %>   
+    </div>
+
+    <div class="emotion clearfix">
+      <% if current_user %>
+        <div class="likes">
+          <%= link_to like_post_path(@post), class:"like-btn", method: :put, remote: :true do %>
+            <ul>
+              <li><img class="like-button" src="<%=asset_path 'likes.png' %>"></li>
+              <li class="likes-count"><%= @post.get_upvotes.size %></li>
+            </ul>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="likes">
+          <ul>
+            <li><a href="/users/sign_in"><img class="like-button" src="<%=asset_path 'likes.png' %>"></a></li>
+            <li class="likes-count"><%= @post.get_upvotes.size %></li>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if current_user %>
+        <div class="favorites">
+          <%= link_to favorite_text, favorites_update_path(post: @post), id: 'favorite_link', remote: true %>
+        </div>
+      <% else %>
+        <div class="favorites">
+          <%= link_to '+ 위시리스트에 더하기', new_user_session_path %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+
+  <div class="inner">
+    <span class="title"><%= @post.title %></span>
+    <!-- <span class="source">By <%= @post.source %></span> -->
+
+    <div class="show_pricing clearfix">
+      <span class="is"><%= number_to_currency(@post.is_price, locale: :kr) %>원</span>
+      <% if @post.was_price.present? %>
+        <span class="was"><%= number_to_currency(@post.was_price, locale: :kr) %>원</span>
+        <% final_pct = 0 %>
+        <% final_pct =  (@post.was_price - @post.is_price) / @post.was_price * 100 %>
+        <span class="pct">( <%= number_to_percentage(final_pct, precision: 0) %> OFF )</span>
+      <% end %>
+    </div>
+    <!-- <p class="category"><%= @post.category.name %></p> -->
+    <!-- <span class="description"><%= @post.description %></span> -->
+    
+    <div class="btn">
+      <a href="<%= @post.link %>">BUY NOW ON COUPANG</a>
+    </div>
+
+    <div class="sharing">
+      <em>좋은건 함께 나눠요 :)</em>
+      <!-- Go to www.addthis.com/dashboard to customize your tools -->
+      <div class="addthis_inline_share_toolbox"></div>
+    </div>
+  </div>
+
+  <% if current_user && current_user.admin %>
+    <div class="admin">
+      <%= link_to 'Edit', edit_post_path(@post) %> |
+      <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+      <%= link_to 'Back', posts_path %>
+    </div>
+  <% end %>
+
+</div><!-- show_box -->
+
