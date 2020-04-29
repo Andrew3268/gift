@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'home/please_confirm'
   get 'favorites/update'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'posts#index'
