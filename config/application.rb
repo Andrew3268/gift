@@ -12,7 +12,8 @@ module Gift
     config.load_defaults 5.2
     config.i18n.default_locale = :ko
     config.time_zone = 'Seoul'
-    config.paths['app/views'] << "app/views/devise"
+    
+    # config.paths['app/views'] << "app/views/devise"
 
 
     # Settings in config/environments/* take precedence over those specified here.
