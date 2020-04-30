@@ -1,8 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
   
-    def after_inactive_sign_up_path_for(resource)
-      '/home/please_confirm'
-    end  
+  # def after_inactive_sign_up_path_for(resource)
+  #   '/home/please_confirm'
+  # end  
   
 
 private
